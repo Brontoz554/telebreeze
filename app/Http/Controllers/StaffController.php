@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StaffRequest;
+use App\Models\Common;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 
@@ -19,23 +20,8 @@ class StaffController extends Controller
     public function store(StaffRequest $request)
     {
         $user = Staff::confirmNewUser($request);
-        try {
-            $user->save();
 
-            return [
-                'success' => true,
-                'errors' => [],
-                'data' => $user,
-            ];
-        } catch (\Exception $error) {
-            return [
-                'success' => false,
-                'errors' => [
-                    $error->getMessage(),
-                ],
-                'data' => [],
-            ];
-        }
+        return Common::do($user, 'save');
     }
 
     public function index()
