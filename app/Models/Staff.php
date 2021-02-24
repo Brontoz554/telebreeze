@@ -24,8 +24,6 @@ class Staff extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = 'staff_id';
-
     /**
      * @param $request
      * @return mixed

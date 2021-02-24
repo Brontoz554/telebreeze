@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('stuff', StaffController::class);
+Route::put('stuff/{stuff}', [StaffController::class, 'update']);
