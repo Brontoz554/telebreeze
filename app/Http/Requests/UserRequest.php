@@ -17,7 +17,19 @@ class UserRequest extends ApiRequest
             'last_name' => 'required|string|between:2,50',
             'birthday' => 'required|max:20|date_format:d.m.Y|after:01.01.1950|before:today',
             'job_id' => 'required_without:job_string|exists:job',
-            'job_string' => 'required_without:job_id'
+            'job_string' => 'required_without:job_id',
+            'education.*.facility' => 'required|string',
+            'education.*.profession' => 'required|string',
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public function messages(): array
+    {
+        return [
+            'required' => 'can not be empty'
         ];
     }
 }

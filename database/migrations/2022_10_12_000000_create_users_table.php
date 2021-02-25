@@ -20,9 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('last_name', 50);
             $table->string('birthday', 20);
             $table->string('job_string')->nullable();
+            $table->unsignedBigInteger('education_id');
             $table->unsignedBigInteger('job_id')->nullable();
 
-            $table->foreign('job_id')->references('job_id')->on('job')->onDelete('cascade');
+            $table->foreign('job_id')->references('job_id')->on('job');
+            $table->foreign('education_id')->references('education_id')->on('education');
 
         });
     }
