@@ -24,11 +24,13 @@ class Staff extends Model
 
     public $timestamps = false;
 
+    protected $guarded = ['id'];
+
     /**
      * @param $request
-     * @return mixed
+     * @return Staff
      */
-    public static function confirmNewUser($request)
+    public static function confirmNewUser($request): Staff
     {
         $user = new Staff();
         $user->first_name = $request->first_name;
