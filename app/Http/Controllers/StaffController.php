@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateStaffRequest;
 use App\Models\Common;
 use App\Models\Staff;
 use Exception;
-use http\Client\Request;
 
 /**
  * Class StaffController
@@ -36,7 +35,7 @@ class StaffController extends Controller
      * @param StaffRequest $request
      * @return array|Exception
      */
-    public function store(StaffRequest $request)
+    public function store(StaffRequest $request): array
     {
         return Common::do(Staff::confirmNewUser($request), null, 'save');
     }
