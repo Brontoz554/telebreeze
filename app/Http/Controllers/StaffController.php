@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StaffRequest;
-use App\Http\Requests\updateStaffRequest;
+use App\Http\Requests\UpdateStaffRequest;
 use App\Models\Common;
 use App\Models\Staff;
 use Exception;
@@ -37,10 +37,10 @@ class StaffController extends Controller
 
     /**
      * @param Staff $staff
-     * @param updateStaffRequest $request
+     * @param UpdateStaffRequest $request
      * @return array
      */
-    public function update(Staff $staff, updateStaffRequest $request): array
+    public function update(Staff $staff, UpdateStaffRequest $request): array
     {
         return Common::do($staff, $request, 'update');
     }
