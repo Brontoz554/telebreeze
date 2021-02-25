@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StaffRequest;
+use App\Http\Requests\updateStaffRequest;
 use App\Models\Common;
 use App\Models\Staff;
 use Exception;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
 
 /**
  * Class StaffController
@@ -21,19 +20,41 @@ class StaffController extends Controller
      */
     public function store(StaffRequest $request)
     {
-        return Common::do(Staff::confirmNewUser($request), 'save');
+        return Common::do(Staff::confirmNewUser($request), null, 'save');
     }
 
     /**
-     * @return Staff[]|Collection
+     * @return array
      */
-    public function index()
+    public function index(): array
     {
-        return Staff::all();
+        return [
+            'success' => true,
+            'error' => [],
+            'data' => Staff::all(),
+        ];
     }
 
-    public function update(Staff $object)
+    /**
+     * @param Staff $staff
+     * @param updateStaffRequest $request
+     * @return array
+     */
+    public function update(Staff $staff, updateStaffRequest $request): array
     {
-        return $object;
+        return Common::do($staff, $request, 'update');
+    }
+
+    /**
+     * @param Staff $staff
+     * @return array
+     */
+    public function show(Staff $staff): array
+    {
+        return [
+            'success' => true,
+            'errors' => [],
+            'data' => $staff
+        ];
     }
 }
