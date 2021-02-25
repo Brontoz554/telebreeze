@@ -19,5 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('stuff', StaffController::class);
-Route::put('stuff/{stuff}', [StaffController::class, 'update']);
+//Route::resource('stuff', StaffController::class);
+Route::put('staff/{staff}', [StaffController::class, 'update']);
+Route::get('staff', [StaffController::class, 'index']);
+Route::get('staff/{staff}', [StaffController::class, 'show']);
+Route::post('staff', [StaffController::class, 'store']);
+//Route::put('stuff/{stuff}', [StaffController::class, 'update']);
