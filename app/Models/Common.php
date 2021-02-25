@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use App\Http\Requests\UpdateStaffRequest as UpdateStaffRequestAlias;
 use Exception;
-use http\Client\Request;
 use Illuminate\Database\Eloquent\Model;
-use Ramsey\Collection\Collection;
 
 /**
  * Class Common

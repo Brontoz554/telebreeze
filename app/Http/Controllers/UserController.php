@@ -5,30 +5,30 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
 use App\Models\Common;
-use App\Models\Staff;
+use App\Models\User;
 use Exception;
 
 /**
- * Class StaffController
+ * Class UserController
  * @package App\Http\Controllers
  */
-class StaffController extends Controller
+class UserController extends Controller
 {
     /**
      * @return array
      */
     public function index(): array
     {
-        return Common::getAll(Staff::class);
+        return Common::getAll(User::class);
     }
 
     /**
-     * @param Staff $staff
+     * @param User $user
      * @return array
      */
-    public function show(Staff $staff): array
+    public function show(User $user): array
     {
-        return Common::getOne($staff);
+        return Common::getOne($user);
     }
 
     /**
@@ -37,25 +37,25 @@ class StaffController extends Controller
      */
     public function store(StaffRequest $request): array
     {
-        return Common::do(Staff::confirmNewUser($request), null, 'save');
+        return Common::do(User::confirmNewUser($request), null, 'save');
     }
 
     /**
-     * @param Staff $staff
+     * @param User $user
      * @param UpdateStaffRequest $request
      * @return array
      */
-    public function update(Staff $staff, UpdateStaffRequest $request): array
+    public function update(User $user, UpdateStaffRequest $request): array
     {
-        return Common::do($staff, $request, 'update');
+        return Common::do($user, $request, 'update');
     }
 
     /**
-     * @param Staff $staff
+     * @param User $user
      * @return array
      */
-    public function remove(Staff $staff): array
+    public function remove(User $user): array
     {
-        return Common::remove($staff);
+        return Common::remove($user);
     }
 }

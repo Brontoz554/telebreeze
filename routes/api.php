@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\StaffController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,13 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::resource('stuff', StaffController::class);
-Route::put('/staff/{staff}', [StaffController::class, 'update']);
-Route::get('/staff/{staff}', [StaffController::class, 'show']);
-Route::delete('/staff/{staff}', [StaffController::class, 'remove']);
-Route::get('/staff', [StaffController::class, 'index']);
-Route::post('/staff', [StaffController::class, 'store']);
+//Route::resource('stuff', UserController::class);
+Route::put('/user/{user}', [UserController::class, 'update']);
+Route::get('/user/{user}', [UserController::class, 'show']);
+Route::delete('/user/{user}', [UserController::class, 'remove']);
+Route::get('/user', [UserController::class, 'index']);
+Route::post('/user', [UserController::class, 'store']);
 
 Route::post('/fluff', [PostController::class, 'store']);
 
-//Route::put('stuff/{stuff}', [StaffController::class, 'update']);
+//Route::put('stuff/{stuff}', [UserController::class, 'update']);
