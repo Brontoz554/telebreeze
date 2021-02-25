@@ -115,10 +115,11 @@ class Common extends Model
      */
     public static function remove($model): array
     {
+        $model->delete();
         return [
             'success' => true,
             'errors' => [],
-            'data' => $model->delete(),
+            'data' => $model,
         ];
     }
 
