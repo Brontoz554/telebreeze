@@ -15,9 +15,9 @@ class UpdateUserRequest extends ApiRequest
             'first_name' => 'string|between:2,50',
             'middle_name' => 'string|between:2,50',
             'last_name' => 'string|between:2,50',
-            'birthday' => 'date_format:d.m.Y|max:20|after:1950-01-01',
-            'job_id' => 'exists:states,_without:job_string',
-            'job_string' => 'without:job_id'
+            'birthday' => 'max:20|date_format:d.m.Y|after:01.01.1950|before:today',
+            'job_id' => 'required_without:job_string|exists:job',
+            'job_string' => 'required_without:job_id'
         ];
     }
 }
