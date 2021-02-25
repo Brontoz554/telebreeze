@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Http\Requests\updateStaffRequest;
 use Exception;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Collection\Collection;
 
 /**
  * Class Common
@@ -13,18 +15,20 @@ use Illuminate\Database\Eloquent\Model;
 class Common extends Model
 {
     /**
-     * @param Model $object
-     * @param string $do
+     * @param Model|Collection|null $object
+     * @param updateStaffRequest|null $request
+     * @param string|null $do
      * @return array
      */
-    public static function do(Model $object, string $do = 'save')
+    public static function do(Model $object, updateStaffRequest $request = null, string $do = null): array
     {
+        $oldObject = $object->getOriginal();
         try {
-            self::determineEffect($object, $do);
+            self::determineEffect($object, $request, $do);
             return [
                 'success' => true,
                 'errors' => [],
-                'data' => $object,
+                'data' => $oldObject,
             ];
         } catch (Exception $error) {
             return [
@@ -38,42 +42,40 @@ class Common extends Model
     }
 
     /**
-     * @param $do
-     * @param $object
-     * @return bool|void
+     * @param Model $object
+     * @param updateStaffRequest $request
+     * @param string $do
      */
-    protected static function determineEffect($object, $do)
+    protected static function determineEffect(Model $object, updateStaffRequest $request, string $do)
     {
         switch ($do) {
             case 'save':
                 self::saveObject($object);
                 break;
             case 'update':
-                self::updateObject($object);
+                self::updateObject($object, $request);
                 break;
             case 'remove':
                 self::removeObject($object);
                 break;
         }
-
-        return $object;
     }
 
     /**
      * @param Model $object
-     * @return bool|void
      */
     protected static function saveObject(Model $object)
     {
-        return $object->save();
+        $object->save();
     }
 
     /**
      * @param Model $object
+     * @param updateStaffRequest $request
      */
-    protected static function updateObject(Model $object)
+    protected static function updateObject(Model $object, updateStaffRequest $request)
     {
-        //TODO СДЕЛАТЬ ОБНОВЛЕНИЕ ЗАПИСИ
+        $object->update($request->all());
     }
 
     /**
