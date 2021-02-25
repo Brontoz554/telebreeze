@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class PostRequest extends ApiRequest
+class JobRequest extends ApiRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -12,7 +12,7 @@ class PostRequest extends ApiRequest
     public function rules(): array
     {
         return [
-            'post_name' => 'required|between:5,70'
+            'job_name' => 'required|between:5,70|unique:job'
         ];
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StaffRequest;
-use App\Http\Requests\UpdateStaffRequest;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Common;
 use App\Models\User;
 use Exception;
@@ -32,20 +32,20 @@ class UserController extends Controller
     }
 
     /**
-     * @param StaffRequest $request
+     * @param UserRequest $request
      * @return array|Exception
      */
-    public function store(StaffRequest $request): array
+    public function store(UserRequest $request): array
     {
         return Common::do(User::confirmNewUser($request), null, 'save');
     }
 
     /**
      * @param User $user
-     * @param UpdateStaffRequest $request
+     * @param UpdateUserRequest $request
      * @return array
      */
-    public function update(User $user, UpdateStaffRequest $request): array
+    public function update(User $user, UpdateUserRequest $request): array
     {
         return Common::do($user, $request, 'update');
     }
@@ -56,6 +56,6 @@ class UserController extends Controller
      */
     public function remove(User $user): array
     {
-        return Common::remove($user);
+        return Common::do($user, null, 'remove');
     }
 }

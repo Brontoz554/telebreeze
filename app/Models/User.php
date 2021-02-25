@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class User
@@ -28,6 +29,8 @@ class User extends Model
 
     protected $table = 'user';
 
+    protected $primaryKey = 'user_id';
+
     /**
      * @param $request
      * @return User
@@ -35,5 +38,13 @@ class User extends Model
     public static function confirmNewUser($request): User
     {
         return new User($request->all());
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function job(): HasOne
+    {
+        return $this->hasOne(Job::class);
     }
 }

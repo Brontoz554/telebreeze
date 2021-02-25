@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class UpdateStaffRequest extends ApiRequest
+class UpdateUserRequest extends ApiRequest
 {
     /**
      * Get the validation rules that apply to the request.

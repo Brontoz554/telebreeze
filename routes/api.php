@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +27,9 @@ Route::delete('/user/{user}', [UserController::class, 'remove']);
 Route::get('/user', [UserController::class, 'index']);
 Route::post('/user', [UserController::class, 'store']);
 
-Route::post('/fluff', [PostController::class, 'store']);
+Route::post('/job', [JobController::class, 'store']);
+Route::get('/job/{job}', [JobController::class, 'show']);
+Route::get('/job', [JobController::class, 'index']);
+Route::put('/job/{job}', [JobController::class, 'update']);
+Route::delete('/job/{job}', [JobController::class, 'remove']);
 
-//Route::put('stuff/{stuff}', [UserController::class, 'update']);

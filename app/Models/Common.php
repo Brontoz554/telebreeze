@@ -42,6 +42,7 @@ class Common extends Model
      * @param Model $object
      * @param null $request
      * @param string $do
+     * @throws Exception
      */
     private static function determineEffect(Model $object, $request, string $do)
     {
@@ -76,18 +77,19 @@ class Common extends Model
     }
 
     /**
-     * @param Model $object
+     * @param Model $model
+     * @throws Exception
      */
-    private static function removeObject(Model $object)
+    private static function removeObject(Model $model)
     {
-        //TODO СДЕЛАТЬ Удаленение ЗАПИСИ
+        $model->delete();
     }
 
     /**
-     * @param Model $model
+     * @param $model
      * @return array
      */
-    public static function getOne(Model $model): array
+    public static function getOne($model): array
     {
         return [
             'success' => true,
@@ -108,19 +110,4 @@ class Common extends Model
             'data' => $model::all(),
         ];
     }
-
-    /**
-     * @param $model
-     * @return array
-     */
-    public static function remove($model): array
-    {
-        $model->delete();
-        return [
-            'success' => true,
-            'errors' => [],
-            'data' => $model,
-        ];
-    }
-
 }

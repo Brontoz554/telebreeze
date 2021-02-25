@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Job extends Model
 {
     use HasFactory;
 
@@ -13,12 +13,16 @@ class Post extends Model
 
     protected $guarded = ['id'];
 
+    protected $table = 'job';
+
+    protected $primaryKey = 'job_id';
+
     /**
      * @param $request
-     * @return Post
+     * @return Job
      */
-    public static function confirmNewPost($request): Post
+    public static function confirmNewPost($request): Job
     {
-        return new Post($request->all());
+        return new Job($request->all());
     }
 }

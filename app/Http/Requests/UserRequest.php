@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class StaffRequest extends ApiRequest
+class UserRequest extends ApiRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,8 +15,8 @@ class StaffRequest extends ApiRequest
             'first_name' => 'required|string|between:2,50',
             'middle_name' => 'required|string|between:2,50',
             'last_name' => 'required|string|between:2,50',
-            'birthday' => 'required|date_format:d.m.Y|max:20|after:1950-01-01',
-            'job_id' => 'exists:states,required_without:job_string',
+            'birthday' => 'required|max:20|date_format:d.m.Y|after:01.01.1950|before:today',
+            'job_id' => 'required_without:job_string|exists:job',
             'job_string' => 'required_without:job_id'
         ];
     }
