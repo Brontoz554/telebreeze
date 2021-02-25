@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\StaffController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,8 +21,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Route::resource('stuff', StaffController::class);
-Route::put('staff/{staff}', [StaffController::class, 'update']);
-Route::get('staff', [StaffController::class, 'index']);
-Route::get('staff/{staff}', [StaffController::class, 'show']);
-Route::post('staff', [StaffController::class, 'store']);
+Route::put('/staff/{staff}', [StaffController::class, 'update']);
+Route::get('/staff/{staff}', [StaffController::class, 'show']);
+Route::delete('/staff/{staff}', [StaffController::class, 'remove']);
+Route::get('/staff', [StaffController::class, 'index']);
+Route::post('/staff', [StaffController::class, 'store']);
+
+Route::post('/fluff', [PostController::class, 'store']);
+
 //Route::put('stuff/{stuff}', [StaffController::class, 'update']);

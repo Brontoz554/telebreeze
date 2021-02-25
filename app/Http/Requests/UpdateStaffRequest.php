@@ -17,7 +17,7 @@ class UpdateStaffRequest extends ApiRequest
             'last_name' => 'string|between:2,50',
             'birthday' => 'date_format:d.m.Y|max:20|after:1950-01-01',
             'job_id' => 'exists:states,_without:job_string',
-            'job_string' => '_without:job_id'
+            'job_string' => 'without:job_id'
         ];
     }
 }

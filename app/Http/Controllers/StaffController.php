@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateStaffRequest;
 use App\Models\Common;
 use App\Models\Staff;
 use Exception;
+use http\Client\Request;
 
 /**
  * Class StaffController
@@ -15,24 +16,29 @@ use Exception;
 class StaffController extends Controller
 {
     /**
+     * @return array
+     */
+    public function index(): array
+    {
+        return Common::getAll(Staff::class);
+    }
+
+    /**
+     * @param Staff $staff
+     * @return array
+     */
+    public function show(Staff $staff): array
+    {
+        return Common::getOne($staff);
+    }
+
+    /**
      * @param StaffRequest $request
      * @return array|Exception
      */
     public function store(StaffRequest $request)
     {
         return Common::do(Staff::confirmNewUser($request), null, 'save');
-    }
-
-    /**
-     * @return array
-     */
-    public function index(): array
-    {
-        return [
-            'success' => true,
-            'error' => [],
-            'data' => Staff::all(),
-        ];
     }
 
     /**
@@ -49,12 +55,8 @@ class StaffController extends Controller
      * @param Staff $staff
      * @return array
      */
-    public function show(Staff $staff): array
+    public function remove(Staff $staff): array
     {
-        return [
-            'success' => true,
-            'errors' => [],
-            'data' => $staff
-        ];
+        return Common::remove($staff);
     }
 }

@@ -9,7 +9,7 @@ class StaffRequest extends ApiRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'first_name' => 'required|string|between:2,50',

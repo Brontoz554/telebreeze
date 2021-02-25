@@ -24,7 +24,7 @@ class Staff extends Model
 
     public $timestamps = false;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     /**
      * @param $request
@@ -32,14 +32,6 @@ class Staff extends Model
      */
     public static function confirmNewUser($request): Staff
     {
-        $user = new Staff();
-        $user->first_name = $request->first_name;
-        $user->middle_name = $request->middle_name;
-        $user->last_name = $request->last_name;
-        $user->job_string = $request->job_string;
-        $user->birthday = $request->birthday;
-//        $stuff->job_id = $request->job_id;
-
-        return $user;
+        return new Staff($request->all());
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Http\Requests\updateStaffRequest;
+use App\Http\Requests\UpdateStaffRequest as UpdateStaffRequestAlias;
 use Exception;
-use http\Env\Request;
+use http\Client\Request;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Collection\Collection;
 
@@ -15,14 +15,14 @@ use Ramsey\Collection\Collection;
 class Common extends Model
 {
     /**
-     * @param Model|Collection|null $object
-     * @param updateStaffRequest|null $request
-     * @param string|null $do
+     * @param Model $object
+     * @param null $request
+     * @param string $do
      * @return array
      */
-    public static function do(Model $object, updateStaffRequest $request = null, string $do = null): array
+    public static function do(Model $object, $request, string $do): array
     {
-        $oldObject = $object->getOriginal();
+        $oldObject = $object->getAttributes();
         try {
             self::determineEffect($object, $request, $do);
             return [
@@ -43,10 +43,10 @@ class Common extends Model
 
     /**
      * @param Model $object
-     * @param updateStaffRequest $request
+     * @param null $request
      * @param string $do
      */
-    protected static function determineEffect(Model $object, updateStaffRequest $request, string $do)
+    private static function determineEffect(Model $object, $request, string $do)
     {
         switch ($do) {
             case 'save':
@@ -64,16 +64,16 @@ class Common extends Model
     /**
      * @param Model $object
      */
-    protected static function saveObject(Model $object)
+    private static function saveObject(Model $object)
     {
         $object->save();
     }
 
     /**
      * @param Model $object
-     * @param updateStaffRequest $request
+     * @param $request
      */
-    protected static function updateObject(Model $object, updateStaffRequest $request)
+    private static function updateObject(Model $object, $request)
     {
         $object->update($request->all());
     }
@@ -81,9 +81,48 @@ class Common extends Model
     /**
      * @param Model $object
      */
-    protected static function removeObject(Model $object)
+    private static function removeObject(Model $object)
     {
         //TODO СДЕЛАТЬ Удаленение ЗАПИСИ
+    }
+
+    /**
+     * @param Model $model
+     * @return array
+     */
+    public static function getOne(Model $model): array
+    {
+        return [
+            'success' => true,
+            'errors' => [],
+            'data' => $model,
+        ];
+    }
+
+    /**
+     * @param $model
+     * @return array
+     */
+    public static function getAll($model): array
+    {
+        return [
+            'success' => true,
+            'errors' => [],
+            'data' => $model::all(),
+        ];
+    }
+
+    /**
+     * @param $model
+     * @return array
+     */
+    public static function remove($model): array
+    {
+        return [
+            'success' => true,
+            'errors' => [],
+            'data' => $model->delete(),
+        ];
     }
 
 }
