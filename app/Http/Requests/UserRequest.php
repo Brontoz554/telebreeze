@@ -30,7 +30,17 @@ class UserRequest extends ApiRequest
     public function messages(): array
     {
         return [
-            'required' => 'field can not be empty'
+            'first_name.required' => 'Имя обязательно для заполнения',
+            'middle_name.required' => 'Фамилия обязательно для заполнения',
+            'last_name.required' => 'Отчество обязательно для заполнения',
+            'birthday.required' => 'Дата рождения обязательна для заполнения',
+            'birthday.date_format' => 'Дата рождения в формате день.месяц.год',
+            'birthday.after' => 'Дата не позже 01.01.1950',
+            'birthday.before' => 'Дата не раньше ' . date('d.m.Y'),
+            'job_string.required_without' => 'Название должности обязательно, в случае если вы не указываете идентификатор должности',
+            'job_id.required_without' => 'Идентификатор должности обязателен, в случае если вы не указываете название должности',
+            'education.*.facility.required' => 'Заполните учебное заведение',
+            'education.*.profession.required' => 'Заполните специальность',
         ];
     }
 }
