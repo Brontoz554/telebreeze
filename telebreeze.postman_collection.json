@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "2e8f500b-b13a-469e-9d07-c14767dfdeb2",
+		"name": "telebreeze",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "список всех пользователей",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://telebreeze/api/user/",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "получить пользователя по id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://telebreeze/api/user/1",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "создание пользователя",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "Коля",
+									"type": "text"
+								},
+								{
+									"key": "middle_name",
+									"value": "Комягинddddd",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "22.02.1983",
+									"type": "text"
+								},
+								{
+									"key": "job_string",
+									"value": "teacher",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Д2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://telebreeze/api/user",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "обновить информацию о пользователе",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"first_name\": \"КОля\", \t\t\t\r\n\t\"middle_name\": \"Коля\",\r\n\t\"last_name\": \"Коля\",\t\r\n\t\"birthday\": \"22.02.1983\", \t\r\n\t\"job_id\": \"1\",\t\t\t\t\r\n\t\"job_string\": \"apelsin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://telebreeze/api/user/1",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "удалить пользователя",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://telebreeze/api/user/3",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "job",
+			"item": [
+				{
+					"name": "вывод должностей",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://telebreeze/api/job",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"job"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "вывод должности по id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://telebreeze/api/job/1",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"job",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "создание должности",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"job_name\": \"jobname\" \t\t\t\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://telebreeze/api/job",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"job"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "изменение названия должности",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "job_name",
+									"value": "super puper job",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://telebreeze/api/job/2",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"job",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "удалить должность",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://telebreeze/api/job/1",
+							"protocol": "http",
+							"host": [
+								"telebreeze"
+							],
+							"path": [
+								"api",
+								"job",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
