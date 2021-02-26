@@ -23,4 +23,13 @@ class Education extends Model
     protected $primaryKey = 'education_id';
 
     protected $guarded = [];
+
+    /**
+     * @param $request
+     * @return Education
+     */
+    public static function confirmNewPost($request): Education
+    {
+        return new Education($request->all());
+    }
 }

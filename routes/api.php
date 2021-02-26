@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -32,4 +33,10 @@ Route::get('/job/{job}', [JobController::class, 'show']);
 Route::get('/job', [JobController::class, 'index']);
 Route::put('/job/{job}', [JobController::class, 'update']);
 Route::delete('/job/{job}', [JobController::class, 'remove']);
+
+Route::post('/education', [EducationController::class, 'store']);
+Route::get('/education/{education}', [EducationController::class, 'show']);
+Route::get('/education', [EducationController::class, 'index']);
+Route::put('/education/{education}', [EducationController::class, 'update']);
+Route::delete('/education/{education}', [EducationController::class, 'remove']);
 
