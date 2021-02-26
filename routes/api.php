@@ -21,22 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::resource('stuff', UserController::class);
-Route::put('/user/{user}', [UserController::class, 'update']);
-Route::get('/user/{user}', [UserController::class, 'show']);
-Route::delete('/user/{user}', [UserController::class, 'remove']);
-Route::get('/user', [UserController::class, 'index']);
-Route::post('/user', [UserController::class, 'store']);
-
-Route::post('/job', [JobController::class, 'store']);
-Route::get('/job/{job}', [JobController::class, 'show']);
-Route::get('/job', [JobController::class, 'index']);
-Route::put('/job/{job}', [JobController::class, 'update']);
-Route::delete('/job/{job}', [JobController::class, 'remove']);
-
-Route::post('/education', [EducationController::class, 'store']);
-Route::get('/education/{education}', [EducationController::class, 'show']);
-Route::get('/education', [EducationController::class, 'index']);
-Route::put('/education/{education}', [EducationController::class, 'update']);
-Route::delete('/education/{education}', [EducationController::class, 'remove']);
-
+Route::resource('/user', UserController::class);
+Route::resource('/job', JobController::class);
+Route::resource('/education', EducationController::class);

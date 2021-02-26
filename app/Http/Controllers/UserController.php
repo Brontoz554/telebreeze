@@ -54,7 +54,7 @@ class UserController extends Controller
      * @param User $user
      * @return array
      */
-    public function remove(User $user): array
+    public function destroy(User $user): array
     {
         return Common::do($user, null, 'remove');
     }

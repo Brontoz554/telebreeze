@@ -48,7 +48,7 @@ class JobController extends Controller
      * @param Job $job
      * @return array
      */
-    public function remove(Job $job): array
+    public function destroy(Job $job): array
     {
         return Common::do($job, null, 'remove');
     }

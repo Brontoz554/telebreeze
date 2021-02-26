@@ -51,7 +51,7 @@ class EducationController extends Controller
      * @param Education $education
      * @return array
      */
-    public function remove(Education $education): array
+    public function destroy(Education $education): array
     {
         return Common::do($education, null, 'remove');
     }
