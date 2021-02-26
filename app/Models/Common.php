@@ -21,7 +21,7 @@ class Common extends Model
     {
         $oldObject = $object->getAttributes();
         try {
-            self::determineEffect($object, $request, $do);
+            self::selectAnOption($object, $request, $do);
             return [
                 'success' => true,
                 'errors' => [],
@@ -44,7 +44,7 @@ class Common extends Model
      * @param string $do
      * @throws Exception
      */
-    private static function determineEffect(Model $object, $request, string $do)
+    private static function selectAnOption(Model $object, $request, string $do)
     {
         switch ($do) {
             case 'save':
