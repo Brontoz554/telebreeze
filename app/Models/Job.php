@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int job_id идентификатор
- * @property string job_name название
+ * @property string job_name название должности
  *
  * Class Job
  * @package App\Models

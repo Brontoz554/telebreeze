@@ -15,4 +15,14 @@ class JobRequest extends ApiRequest
             'job_name' => 'required|between:5,70|unique:job'
         ];
     }
+
+    /**
+     * @return string[]
+     */
+    public function messages(): array
+    {
+        return [
+            'job_name.required' => 'заполните название должности'
+        ];
+    }
 }
