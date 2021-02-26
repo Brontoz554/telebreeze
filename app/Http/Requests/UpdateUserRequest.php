@@ -20,4 +20,16 @@ class UpdateUserRequest extends ApiRequest
             'job_string' => 'required_without:job_id'
         ];
     }
+
+    /**
+     * @return string[]
+     */
+    public function messages(): array
+    {
+        return [
+            'birthday.date_format' => 'Дата рождения в формате день.месяц.год',
+            'birthday.after' => 'Дата не позже 01.01.1950',
+            'birthday.before' => 'Дата не раньше ' . date('d.m.Y'),
+        ];
+    }
 }
