@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EducationRequest;
-use App\Http\Requests\JobRequest;
 use App\Http\Requests\UpdateEducationRequest;
 use App\Models\Common;
 use App\Models\Education;
-use App\Models\Job;
 
 class EducationController extends Controller
 {
