@@ -124,14 +124,24 @@ class Common extends Model
      */
     public static function getAll($model): array
     {
-        foreach ($model::all() as $object){
-            empty($object->education) ?: $object['education'] = $object->education;
-            $response[] = $object;
-        }
         return [
             'success' => true,
             'errors' => [],
-            'data' => $response,
+            'data' => self::getAllObjects($model),
         ];
+    }
+
+    /**
+     * @param $model
+     * @return array
+     */
+    private static function getAllObjects($model): array
+    {
+        $response = [];
+        foreach ($model::all() as $object) {
+            empty($object->education) ?: $object['education'] = $object->education;
+            $response[] = $object;
+        }
+        return $response;
     }
 }

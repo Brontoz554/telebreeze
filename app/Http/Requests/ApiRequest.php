@@ -17,6 +17,7 @@ class ApiRequest extends FormRequest
                     $validator->errors()
                 ],
                 'data' => [],
-            ], 422));
+            ], 422)
+        );
     }
 }
