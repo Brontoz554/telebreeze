@@ -64,7 +64,26 @@ class Common extends Model
      */
     private static function saveObject(Model $object)
     {
+        $object->education
+            ? self::saveEducation($object)
+            : $object->save();
+    }
+
+    /**
+     * @param $object
+     */
+    private static function saveEducation($object)
+    {
+        $request = [];
+        $education = $object->education;
+        unset($object->education);
         $object->save();
+        $object = $object->getAttributes();
+        foreach ($education as $item) {
+            $item['user_id'] = $object['user_id'];
+            $request[] = $item;
+        }
+        Education::insert($request);
     }
 
     /**
@@ -91,6 +110,7 @@ class Common extends Model
      */
     public static function getOne($model): array
     {
+        empty($model->education) ?: $model['education'] = $model->education;
         return [
             'success' => true,
             'errors' => [],
@@ -104,10 +124,14 @@ class Common extends Model
      */
     public static function getAll($model): array
     {
+        foreach ($model::all() as $object){
+            empty($object->education) ?: $object['education'] = $object->education;
+            $response[] = $object;
+        }
         return [
             'success' => true,
             'errors' => [],
-            'data' => $model::all(),
+            'data' => $response,
         ];
     }
 }
