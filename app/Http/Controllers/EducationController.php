@@ -46,13 +46,4 @@ class EducationController extends Controller
     {
         return Common::do($education, $request, 'update');
     }
-
-    /**
-     * @param Education $education
-     * @return array
-     */
-    public function destroy(Education $education): array
-    {
-        return Common::do($education, null, 'remove');
-    }
 }
